@@ -1,4 +1,6 @@
 from flask import Flask, request, session, redirect, url_for, render_template, flash, jsonify
+from flask_wtf import Form, FlaskForm
+import uuid
 
 from . models import Organization, BeneficiaryStakeholder, Impact, Funder, db
 from . forms import SignUpForm, SignInForm, UserProfileForm, Login, FunderForm, Orgregistration, Stkregistration, Outregistration
@@ -64,7 +66,6 @@ def show_organizations():
 def orgregistration():
     org = Orgregistration()
     if request.method == 'POST':
-        # identifier = org.orgbusnum.data
         organization = Organization(org.legalName.data, org.description.data, \
         org.useOfFunds.data, org.address.data, org.city.data, org.province.data, org.postalCode.data,\
         org.telephone.data, org.hasContactFirstNameS.data, org.hasContactLastNameS.data, org.hasContactEmails.data, \
@@ -95,49 +96,49 @@ def update_organization(identifier):
 # Stakeholder
 @app.route('/stakeholders')
 def show_stakeholders():
-    stakeholders = Organization.query.all()
+    stakeholders = BeneficiaryStakeholder.query.all()
     return render_template('', stakeholders=stakeholders)
 
 @app.route('/stkregistration', methods=['GET', 'POST'])
 def stkregistration():
-    stk = Stkregistration()
+    stk = Stkregistration(request.form)
     if request.method == 'POST':
-        name = org.title.data
-        description = org.description.data
-        location = org.location.data
-        bsMinority = org.offlangmincom.data
-        bsMentalHealth = org.mentalhealth.data
-        bsSeniors = org.seniors.data
-        bsLGBTQ = org.queer.data
-        bsNewcomer = org.newref.data
-        bsRacialized = org.racial.data
-        bsRemote = org.community.data
-        bsDisabilities = org.disability.data
-        bsIndigenous = org.indi.data
-        bsWomenGirls = org.female.data
-        bsChildrenYouth = org.child.data
-        bsLowIncome = org.lowincome.data
-        stakeholder = Organization(name, description, location, bsMinority, bsMentalHealth, bsSeniors, bsLGBTQ, \
+        name = stk.title.data
+        description = stk.description.data
+        location = stk.location.data
+        bsMinority = stk.offlangmincom.data
+        bsMentalHealth = stk.mentalhealth.data
+        bsSeniors = stk.seniors.data
+        bsLGBTQ = stk.queer.data
+        bsNewcomer = stk.newref.data
+        bsRacialized = stk.racial.data
+        bsRemote = stk.community.data
+        bsDisabilities = stk.disability.data
+        bsIndigenous = stk.indi.data
+        bsWomenGirls = stk.female.data
+        bsChildrenYouth = stk.child.data
+        bsLowIncome = stk.lowincome.data
+        stakeholder = BeneficiaryStakeholder(name, description, location, bsMinority, bsMentalHealth, bsSeniors, bsLGBTQ, \
         bsNewcomer, bsNewcomer, bsRacialized, bsRemote, bsDisabilities, bsIndigenous, bsWomenGirls, bsChildrenYouth, bsLowIncome)
         db.session.add(stakeholder)
         db.session.commit()
         return redirect(url_for('stakeholders'))
         console.log('Added')
-    return render_template('stkregistration.html', form=stakeholder)
+    return render_template('stkregistration.html', form=stk)
 
 @app.route('/stakeholders/delete/<identifier>', methods=('GET', 'POST'))
 def delete_stakeholder(identifier):
-    organization = Organization.query.get(identifier)
-    db.session.delete(organization)
+    stakeholder = BeneficiaryStakeholder.query.get(identifier)
+    db.session.delete(stakeholder)
     db.session.commit()
-    return redirect(url_for('organizations'))
+    return redirect(url_for('stakeholders'))
 
 @app.route('/stakeholders/update/<identifier>', methods=('GET', 'POST'))
 def update_stakeholder(identifier):
-    stkx = Impact.query.get(identifier)
+    stkx = BeneficiaryStakeholder.query.get(identifier)
     stakeholder = Stkregistration(obj=stkx)
     if request.method == 'POST':
-        stk = Impact.query.get(org_id)
+        stk = BeneficiaryStakeholder.query.get(org_id)
         stk.name = stakeholder.name.data
         db.session.commit()
         return redirect(url_for('stakeholders'))
@@ -151,28 +152,28 @@ def show_outcome():
 
 @app.route('/outregistration', methods=['GET', 'POST'])
 def outregistration():
-    stk = Stkregistration()
+    out = Outregistration()
     if request.method == 'POST':
-        name = org.title.data
-        description = org.description.data
-        forStakeHolder = org.stakeholder1.data
-        hasImportance = org.importance.data
-        underServed = org.underserved.data
-        definedBy = org.sdg1.data
+        name = out.title.data
+        description = out.description.data
+        forStakeHolder = out.stakeholder1.data
+        hasImportance = out.importance.data
+        underServed = out.underserved.data
+        definedBy = out.sdg1.data
         outcome = Impact(name, description, forStakeHolder, hasImportance, underServed, definedBy)
         db.session.add(outcome)
         db.session.commit()
         return redirect(url_for('outcomes'))
         console.log('Added')
-    return render_template('outregistration.html', form=stk)
+    return render_template('outregistration.html', form=out)
 
 @app.route('/outcomes/update/<identifier>', methods=('GET', 'POST'))
 def update_outcome(identifier):
     outx = Impact.query.get(identifier)
     outcome = Outregistration(obj=outx)
     if request.method == 'POST':
-        out = Impact.query.get(org_id)
-        out.name = funder.name.data
+        out = Impact.query.get(identifier)
+        out.name = outcome.name.data
         db.session.commit()
         return redirect(url_for('outcomes'))
     return render_template('outregistration.html', funder=funder)
@@ -181,12 +182,14 @@ def update_outcome(identifier):
 @app.route('/funders', methods=['GET', 'POST'])
 def show_funders():
     funders = Funder.query.all()
+    print(funders)
     return render_template('funders.html', funders=funders)
 
 @app.route('/funregistration', methods=['GET', 'POST'])
 def funregistration():
     fun = FunderForm(request.form)
     if request.method == 'POST':
+        identifier = 'ORG' + str(uuid.uuid4())[:8]
         firstname = fun.firstname.data
         lastname = fun.lastname.data
         email = fun.email.data
@@ -197,7 +200,7 @@ def funregistration():
         funder = Funder(firstname, lastname, email, phone, financialinst, academicinst, govinst)
         db.session.add(funder)
         db.session.commit()
-        return redirect(url_for('funders'))
+        return redirect(url_for(show_funders))
         print('Added')
     return render_template('funregistration.html', form=fun)
 

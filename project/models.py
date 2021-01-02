@@ -1,20 +1,23 @@
 from flask_sqlalchemy import SQLAlchemy
 import datetime
+import uuid
 from project import app
 
 db = SQLAlchemy(app)
 
 class Funder(db.Model):
-    identifier = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    firstname = db.Column(db.String(50))
-    lastname = db.Column(db.String(50))
-    email = db.Column(db.String(50), unique=True, index=True)
-    phone = db.Column(db.String(50))
-    financialinst = db.Column(db.Boolean, unique=False, default=False)
-    academicinst = db.Column(db.Boolean, unique=False, default=False)
-    govinst = db.Column(db.Boolean, unique=False, default=False)
+    __tablename__ = "Funder"
+    identifier = db.Column(db.String(100), primary_key=True, default='FUN' + str(uuid.uuid4())[:8])
+    firstname = db.Column(db.String(100))
+    lastname = db.Column(db.String(100))
+    email = db.Column(db.String(100), unique=True, index=True)
+    phone = db.Column(db.String(100))
+    financialinst = db.Column(db.Boolean, default=False)
+    academicinst = db.Column(db.Boolean, default=False)
+    govinst = db.Column(db.Boolean, default=False)
+    dateCreated = db.Column('sch:dateCreated', db.DateTime, default=datetime.datetime.now)
     
-    def __init__(self, identifier, firstname, email, username, phone, financialinst, academicinst, govinst):
+    def __init__(self, firstname, lastname, email, username, phone, financialinst, academicinst, govinst):
         self.firstname = firstname
         self.lastname = lastname
         self.email = email
@@ -24,7 +27,8 @@ class Funder(db.Model):
         self.govinst = govinst
         
 class Organization(db.Model):
-    identifier = db.Column('sch:identifier', db.Integer, primary_key=True, autoincrement=True)
+    __tablename__ = "Organization"
+    identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='ORG' + str(uuid.uuid4())[:8])
     legalName = db.Column('sch:legalName', db.String(100))
     description = db.Column('sch:description', db.String(100))
     useOfFunds = db.Column('sch:useOfFunds', db.String(100))
@@ -50,22 +54,35 @@ class Organization(db.Model):
     womanOwned = db.Column(db.Boolean, unique=False, default=False)
     dateCreated = db.Column('sch:dateCreated', db.DateTime, default=datetime.datetime.now)
 
-    def __init__(self, identifier, legalName, memberOf, description, address, telephone, email, hasOutcomeS, hasIndicatorS, hasIndicatorReportS, dateCreated, provider):
-        self.identifier = identifier
+    def __init__(self, legalName, description, useOfFunds, address, city, province, postalCode, \
+    telephone, hasContactFirstNameS, hasContactLastNameS, hasContactEmails, hasContactPhoneS, womanOwned, \
+    indigenousOwned, blackOwned, percentIndegenousLeaders, percentWomenLeaders, percentBlackLeaders, \
+    percentIndegenousBoard, percentWomenBoard, percentBlackBoard):
         self.legalName = legalName
-        self.memberOf = memberOf
         self.description = description
+        self.useOfFunds = useOfFunds
         self.address = address
+        self.city = city
+        self.province = province
+        self.postalCode = postalCode
         self.telephone = telephone
-        self.hasContactS = hasContactS
-        self.email = email
-        self.hasIndicatorS = hasIndicatorS
-        self.hasIndicatorReportS = hasIndicatorReportS
-        self.dateCreated = dateCreated
-        self.provider = provider
+        self.hasContactFirstNameS = hasContactFirstNameS
+        self.hasContactLastNameS = hasContactLastNameS
+        self.hasContactEmails = hasContactEmails
+        self.hasContactPhoneS = hasContactPhoneS
+        self.womanOwned = womanOwned
+        self.indigenousOwned = indigenousOwned
+        self.blackOwned = blackOwned
+        self.percentIndegenousLeaders = percentIndegenousLeaders
+        self.percentWomenLeaders = percentWomenLeaders
+        self.percentBlackLeaders = percentBlackLeaders
+        self.percentIndegenousBoard = percentIndegenousBoard
+        self.percentWomenBoard = percentWomenBoard
+        self.percentBlackBoard = percentBlackBoard
 
 class Impact(db.Model):
-    identifier = db.Column('sch:identifier', db.Integer, primary_key=True, autoincrement=True)
+    __tablename__ = "Impact"
+    identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='OUT' + str(uuid.uuid4())[:8])
     name = db.Column('sch:name', db.String(100))
     description = db.Column('sch:description', db.String(1000))
     forStakeHolder = db.Column('forStakeHolder', db.String(1000))
@@ -87,7 +104,8 @@ class Impact(db.Model):
         self.provider = provider
 
 class Indicator(db.Model):
-    identifier = db.Column('sch:identifier', db.Integer, primary_key=True, autoincrement=True)
+    __tablename__ = "Indicator"
+    identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='IND' + str(uuid.uuid4())[:8])
     name = db.Column('sch:name', db.String(100))
     description = db.Column('sch:description', db.String(1000))
     defineByS = db.Column('defineByS', db.String(1000))
@@ -113,7 +131,8 @@ class Indicator(db.Model):
         self.provider = provider
 
 class IndicatorReport(db.Model):
-    identifier = db.Column('sch:identifier', db.Integer, primary_key=True, autoincrement=True)
+    __tablename__ = "IndicatorReport"
+    identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='INR' + str(uuid.uuid4())[:8])
     name = db.Column('sch:name', db.String(100))
     forOrganization = db.Column('forOrganization', db.String(1000))
     forOutcome = db.Column('forOutcome', db.String(1000))
@@ -139,7 +158,8 @@ class IndicatorReport(db.Model):
         self.provider = provider
 
 class OutcomeReport(db.Model):
-    identifier = db.Column('sch:identifier', db.Integer, primary_key=True, autoincrement=True)
+    __tablename__ = "OutcomeReport"
+    identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='OUT' + str(uuid.uuid4())[:8])
     name = db.Column('sch:name', db.String(100))
     forOrganization = db.Column('forOrganization', db.String(1000))
     forOutcome = db.Column('forOutcome', db.String(1000))
@@ -159,8 +179,10 @@ class OutcomeReport(db.Model):
     dateCreated = db.Column('sch:dateCreated', db.DateTime, default=datetime.datetime.now)
     provider = db.Column('sch:provider', db.String(100))
 
-    def __init__(self, identifier, name, forOrganization, forOutcome, hasExpectation, hasScaleValue, hasScaleCFValueS, hasScaleCFSource, hasDepthIndicator, hasDepthValue, hasDepthCFValue, hasDepthCFSource, hasDurationStartDate, hasDurationEndDate, hasDurationCFValue, hasDurationCFSource, hasOutcomeComment, dateCreated, provider):
-        self.identifier = identifier
+    def __init__(self, name, forOrganization, forOutcome, hasExpectation, hasScaleValue, \
+    hasScaleCFValueS, hasScaleCFSource, hasDepthIndicator, hasDepthValue, hasDepthCFValue, \
+    hasDepthCFSource, hasDurationStartDate, hasDurationEndDate, hasDurationCFValue, \
+    hasDurationCFSource, hasOutcomeComment, dateCreated, provider):
         self.name = name
         self.forOrganization = forOrganization
         self.forOutcome = forOutcome
@@ -181,29 +203,29 @@ class OutcomeReport(db.Model):
         self.provider = provider
 
 class BeneficiaryStakeholder(db.Model):
-    subClassOf = db.Column('subClassOf', db.String(100))
-    identifier = db.Column('sch:identifier', db.Integer, primary_key=True, autoincrement=True)
+    __tablename__ = "BeneficiaryStakeholder"
+    identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='STK' + str(uuid.uuid4())[:8])
+    subClassOf = db.Column('subClassOf', db.String(100), nullable=True)
     name = db.Column('sch:name', db.String(100))
     description = db.Column('sch:description', db.String(1000))
     location = db.Column('location', db.String(1000))
-    bsMinority = db.Column('bsMinority', db.String(1000))
-    bsMentalHealth = db.Column('bsMentalHealth', db.String(1000))
-    bsSeniors = db.Column('bsSeniors', db.String(1000))
-    bsLGBTQ = db.Column('bsLGBTQ', db.String(1000))
-    bsNewcomer = db.Column('bsNewcomer', db.String(1000))
-    bsRacialized = db.Column('bsRacialized', db.String(1000))
-    bsRemote = db.Column('bsRemote', db.String(1000))
-    bsDisabilities = db.Column('bsDisabilities', db.String(1000))
-    bsIndigenous = db.Column('bsIndigenous', db.String(1000))
-    bsWomenGirls = db.Column('bsWomenGirls', db.String(1000))
-    bsChildrenYouth = db.Column('bsChildrenYouth', db.String(1000))
-    bsLowIncome = db.Column('bsLowIncome', db.String(1000))
+    bsMinority = db.Column(db.Boolean, default=False)
+    bsMentalHealth = db.Column(db.Boolean, default=False)
+    bsSeniors = db.Column(db.Boolean, default=False)
+    bsLGBTQ = db.Column(db.Boolean, default=False)
+    bsNewcomer = db.Column(db.Boolean, default=False)
+    bsRacialized = db.Column(db.Boolean, default=False)
+    bsRemote = db.Column(db.Boolean, default=False)
+    bsDisabilities = db.Column(db.Boolean, default=False)
+    bsIndigenous = db.Column(db.Boolean, default=False)
+    bsWomenGirls = db.Column(db.Boolean, default=False)
+    bsChildrenYouth = db.Column(db.Boolean, default=False)
+    bsLowIncome = db.Column(db.Boolean, default=False)
     dateCreated = db.Column('sch:dateCreated', db.DateTime, default=datetime.datetime.now)
-    provider = db.Column('sch:provider', db.String(100))
 
-    def __init__(self, subClassOf, identifier, name, description, location, bsMinority, bsMentalHealth, bsSeniors, bsLGBTQ, bsNewcomer, bsRacialized, bsRemote, bsDisabilities, bsIndigenous, bsWomenGirls, bsChildrenYouth, bsLowIncome, dateCreated, provider):
-        self.subClassOf = subClassOf
-        self.identifier = identifier
+    def __init__(self, name, description, location, bsMinority, bsMentalHealth, \
+    bsSeniors, bsLGBTQ, bsNewcomer, bsRacialized, bsRemote, bsDisabilities, bsIndigenous, bsWomenGirls, \
+    bsChildrenYouth, bsLowIncome):
         self.name = name
         self.description = description
         self.location = location
@@ -219,11 +241,10 @@ class BeneficiaryStakeholder(db.Model):
         self.bsWomenGirls = bsWomenGirls
         self.bsChildrenYouth = bsChildrenYouth 
         self.bsLowIncome = bsLowIncome
-        self.dateCreated = dateCreated
-        self.provider = provider
         
 class SimilarIndicator(db.Model):
-    identifier = db.Column('sch:identifier', db.Integer, primary_key=True, autoincrement=True)
+    __tablename__ = "SimilarIndicator"
+    identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='SIM' + str(uuid.uuid4())[:8])
     name = db.Column('sch:name', db.String(100))
     description = db.Column('sch:description', db.String(1000))
     forIndicatorS = db.Column('forIndicatorS', db.String(1000))

@@ -29,13 +29,14 @@ class UserProfileForm(Form):
     email = EmailField('Email', validators= [DataRequired(), Email()])
 
 class FunderForm(Form):
-    firstname = TextField('First Name', validators=[InputRequired('This field is mandatory')])
-    lastname = TextField('Last Name', validators=[InputRequired('This field is mandatory')])
-    email = TextField('Email', validators=[InputRequired('This field is mandatory'), Email()])
-    phone = TextField('Phone', validators=[InputRequired('This field is mandatory'), Length(min=10, max=10, message='Your phone number is exactly 10 digits including country code ')])
-    financialinst = BooleanField('Financial Institutioin', validators=[Optional()], default=False)
-    academicinst = BooleanField('Academic Institution', validators=[Optional()], default=False)
-    govinst = BooleanField('Government Institution', validators=[Optional()], default=False)
+    firstname = TextField('First Name', validators= [DataRequired()])
+    lastname = TextField('Last Name', validators= [DataRequired()])
+    email = TextField('Email', validators= [DataRequired(), Email()])
+    phone = TextField('Phone', validators=[ DataRequired(), Length(min=6)])
+    financialinst = BooleanField('Financial Institutioin', default=False)
+    academicinst = BooleanField('Academic Institution', default=False)
+    govinst = BooleanField('Government Institution', default=False)
+    submit = SubmitField('Register')
 
 class Login(FlaskForm):
     username = StringField('Username', validators=[InputRequired('This field is mandatory')])

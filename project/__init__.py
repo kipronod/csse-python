@@ -7,4 +7,3 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 
 from project import models
 from project import views
-
