@@ -1,0 +1,39 @@
+{% from "_render_field.html" import render_field %}
+
+<html>
+<head>
+<title>Form!</title>
+</head>
+<body>
+<h1><a href="/register">Register</a></h1> <h1><a href="/login">LogIn</a></h1>
+<form method="POST" action="{{ url_for('funregistration') }}">
+    
+    {{ form.csrf_token }}
+
+    <h1>Register New User</h1>
+    <h2>Contact Information</h2>
+
+    {{ render_field(form.firstname )}}
+
+    {{ render_field(form.lastname )}}
+
+    {{ render_field(form.email )}}
+
+    {{ render_field(form.phone )}}
+
+    <h2>Choose one of the options below</h2>
+
+    {{ render_field(form.financialinst )}}
+
+    {{ render_field(form.academicinst )}}
+
+    {{ render_field(form.govinst )}}
+
+    <h2>The CSSE support team will contact the person listed above to confirm the information shared with us.</h2>
+
+    
+    <input type="submit" value="Register">
+    
+</form>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% from "_render_field.html" import render_field %}
+
+<html>
+<head>
+<title>Form!</title>
+</head>
+<body>
+<h1><a href="/">Organization</a></h1> <h1><a href="/form2">Stakeholder</a></h1> <h1><a href="/form3">Outcome</a></h1>
+<form method="POST" action="{{ url_for('form') }}">
+    {{ form.csrf_token }}
+
+    <h2>Outcome </h2>
+    <h3>Primary Otcome </h3>
+    <p>ID</p>
+
+    {{ render_field(form.title )}}
+
+    {{ render_field(form.description )}}
+
+    <h3>Domain </h3>
+
+    {{ render_field(form.sdg1 )}}
+
+    {{ render_field(form.sdg2 )}}
+
+    <h3>Stakeholder 1 </h3>
+
+    {{ render_field(form.stakeholder1 )}}
+
+    {{ render_field(form.importance )}}
+
+    {{ render_field(form.underserved )}}
+
+    <h3>Stakeholder 2 </h3>
+
+    {{ render_field(form.stakeholder2 )}}
+
+    {{ render_field(form.importance2 )}}
+
+    {{ render_field(form.underserved2 )}}
+
+    <h3>Indicator </h3>
+    <p>ID</p>
+
+    {{ render_field(form.indicatorname )}}
+
+    {{ render_field(form.indicatordescription )}}
+
+    {{ render_field(form.baseline )}}
+
+    {{ render_field(form.threshold )}}
+
+    <h3>Risk Optional</h3>
+    <h4>Evidence Risk</h4>
+
+    {{ render_field(form.exists )}}
+
+    {{ render_field(form.probability )}}
+
+    {{ render_field(form.riskdescription )}}
+
+
+
+    
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

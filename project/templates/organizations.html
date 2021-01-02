@@ -1,0 +1,73 @@
+{% from "_render_field.html" import render_field %}
+
+<html>
+<head>
+<title>Form!</title>
+</head>
+<body>
+<h1><a href="/login">LogIn</a></h1> <h1><a href="/help">Help</a></h1>
+<form method="POST" action="{{ url_for('orgregistration') }}">
+    {{ form.csrf_token }}
+
+    <h2>Organization Information</h2>
+
+    {{ render_field(form.orgbusnum)}}
+
+    {{ render_field(form.legalName)}}
+
+    {{ render_field(form.description)}}
+
+    {{ render_field(form.useOfFunds)}}
+
+    <h2>Address</h2>
+
+    {{ render_field(form.address)}}
+
+    {{ render_field(form.city)}}
+
+    {{ render_field(form.province)}}
+
+    {{ render_field(form.postalCode)}}
+
+    {{ render_field(form.telephone)}}
+
+    <h2>Contact Person</h2>
+
+    {{ render_field(form.hasContactFirstNameS)}}
+
+    {{ render_field(form.hasContactLastNameS)}}
+
+    {{ render_field(form.hasContactEmails)}}
+
+    {{ render_field(form.hasContactPhoneS)}}
+
+    <h2>Leadership Profile</h2>
+    <h3>Ownership</h3>
+
+    {{ render_field(form.womanOwned)}}
+
+    {{ render_field(form.indigenousOwned)}}
+
+    {{ render_field(form.blackOwned)}}
+
+    <h3>Leadership (c-suite or senior managers)</h3>
+
+    {{ render_field(form.percentIndegenousLeaders)}}
+
+    {{ render_field(form.percentWomenLeaders)}}
+
+    {{ render_field(form.percentBlackLeaders)}}
+
+    <h3>Board</h3>
+
+    {{ render_field(form.percentIndegenousBoard)}}
+
+    {{ render_field(form.percentWomenBoard)}}
+
+    {{ render_field(form.percentBlackBoard)}}
+
+    <input type="submit" action = "stkregistration.html" value="Submit">
+    
+</form>
+</body>
+</html>
