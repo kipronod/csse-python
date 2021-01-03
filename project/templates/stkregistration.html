@@ -11,41 +11,40 @@
 
     <h2>Stakeholder Information </h2>
 
-    {{ render_field(form.title )}}
+    {{ render_field(form.name) }}
 
-    {{ render_field(form.description )}}
+    {{ render_field(form.description) }}
 
-    {{ render_field(form.location )}}
+    {{ render_field(form.location) }}
 
     <h2>Characteristics</h2>
+
     <h3>Select all that apply</h3>
 
+    {{ render_field(form.bsMinority) }}
 
-    {{ render_field(form.offlangmincom )}}
+    {{ render_field(form.bsMentalHealth) }}
 
-    {{ render_field(form.mentalhealth )}}
+    {{ render_field(form.bsSeniors) }}
 
-    {{ render_field(form.seniors )}}
+    {{ render_field(form.bsLGBTQ) }}
 
-    {{ render_field(form.queer )}}
+    {{ render_field(form.bsNewcomer) }}
 
-    {{ render_field(form.newref )}}
+    {{ render_field(form.bsRacialized) }}
 
-    {{ render_field(form.racial )}}
+    {{ render_field(form.bsRemote) }}
 
-    {{ render_field(form.community )}}
+    {{ render_field(form.bsDisabilities) }}
 
-    {{ render_field(form.disability )}}
+    {{ render_field(form.bsIndigenous) }}
 
-    {{ render_field(form.indi )}}
+    {{ render_field(form.bsWomenGirls) }}
 
-    {{ render_field(form.female )}}
+    {{ render_field(form.bsChildrenYouth) }}
 
-    {{ render_field(form.child )}}
+    {{ render_field(form.bsLowIncome) }}
 
-    {{ render_field(form.lowincome )}}
-
-    
     <input type="submit" value="Submit">
 </form>
 </body>

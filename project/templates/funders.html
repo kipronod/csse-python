@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Organizations</title>
+    <title>Funders</title>
 
     <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/bootstrap/css/bootstrap-theme.min.css">
@@ -24,18 +24,17 @@
 <body>
 <div>
 <ul class="nav nav-tabs">
-  <li role="presentation"><a href="/funders">Funders</a></li>
-  <li role="presentation" class="active"><a href="">Organizations</a></li>
-  <li role="presentation"><a href="/stakeholders">Stakeholders</a></li>
+  <li role="presentation" class="active"><a href="">Funders</a></li>
+  <li role="presentation"><a href="/organizations">Organizations</a></li>
+  <li role="presentation"><a href="/about_user">Stakeholders</a></li>
 </ul>
 </div>
 <div class="ps">
-{% for i in organizations %}
+{% for i in stakeholders %}
 <div class="panel panel-info">
-    <div class="panel-body"><p>{{i.legalName}}</p> </div>
-    <div class="panel-body"><p>{{i.description}}</p> </div>
-    <div class="panel-body"><p>{{i.useOfFunds}}</p> </div>
-  </div>
+  <div class="panel-body"><p>{{i.firstname}}</p> </div>
+  <div class="panel-body"><p>{{i.lastname}}</p> </div>
+  <div class="panel-body"><p>{{i.email}}</p> </div>
 </div>
 {% endfor %}
 </div>    

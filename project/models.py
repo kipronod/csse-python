@@ -6,7 +6,7 @@ from project import app
 db = SQLAlchemy(app)
 
 class Funder(db.Model):
-    __tablename__ = "Funder"
+    # __tablename__ = "Funder"
     identifier = db.Column(db.String(100), primary_key=True, default='FUN' + str(uuid.uuid4())[:8])
     firstname = db.Column(db.String(100))
     lastname = db.Column(db.String(100))
@@ -15,9 +15,9 @@ class Funder(db.Model):
     financialinst = db.Column(db.Boolean, default=False)
     academicinst = db.Column(db.Boolean, default=False)
     govinst = db.Column(db.Boolean, default=False)
-    dateCreated = db.Column('sch:dateCreated', db.DateTime, default=datetime.datetime.now)
+    dateCreated = db.Column(db.DateTime, default=datetime.datetime.now)
     
-    def __init__(self, firstname, lastname, email, username, phone, financialinst, academicinst, govinst):
+    def __init__(self, firstname, lastname, email, phone, financialinst, academicinst, govinst):
         self.firstname = firstname
         self.lastname = lastname
         self.email = email
@@ -27,7 +27,7 @@ class Funder(db.Model):
         self.govinst = govinst
         
 class Organization(db.Model):
-    __tablename__ = "Organization"
+    # __tablename__ = "Organization"
     identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='ORG' + str(uuid.uuid4())[:8])
     legalName = db.Column('sch:legalName', db.String(100))
     description = db.Column('sch:description', db.String(100))
@@ -81,7 +81,7 @@ class Organization(db.Model):
         self.percentBlackBoard = percentBlackBoard
 
 class Impact(db.Model):
-    __tablename__ = "Impact"
+    # __tablename__ = "Impact"
     identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='OUT' + str(uuid.uuid4())[:8])
     name = db.Column('sch:name', db.String(100))
     description = db.Column('sch:description', db.String(1000))
@@ -104,7 +104,7 @@ class Impact(db.Model):
         self.provider = provider
 
 class Indicator(db.Model):
-    __tablename__ = "Indicator"
+    # __tablename__ = "Indicator"
     identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='IND' + str(uuid.uuid4())[:8])
     name = db.Column('sch:name', db.String(100))
     description = db.Column('sch:description', db.String(1000))
@@ -131,7 +131,7 @@ class Indicator(db.Model):
         self.provider = provider
 
 class IndicatorReport(db.Model):
-    __tablename__ = "IndicatorReport"
+    # __tablename__ = "IndicatorReport"
     identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='INR' + str(uuid.uuid4())[:8])
     name = db.Column('sch:name', db.String(100))
     forOrganization = db.Column('forOrganization', db.String(1000))
@@ -158,7 +158,7 @@ class IndicatorReport(db.Model):
         self.provider = provider
 
 class OutcomeReport(db.Model):
-    __tablename__ = "OutcomeReport"
+    # __tablename__ = "OutcomeReport"
     identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='OUT' + str(uuid.uuid4())[:8])
     name = db.Column('sch:name', db.String(100))
     forOrganization = db.Column('forOrganization', db.String(1000))
@@ -203,9 +203,8 @@ class OutcomeReport(db.Model):
         self.provider = provider
 
 class BeneficiaryStakeholder(db.Model):
-    __tablename__ = "BeneficiaryStakeholder"
+    # __tablename__ = "BeneficiaryStakeholder"
     identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='STK' + str(uuid.uuid4())[:8])
-    subClassOf = db.Column('subClassOf', db.String(100), nullable=True)
     name = db.Column('sch:name', db.String(100))
     description = db.Column('sch:description', db.String(1000))
     location = db.Column('location', db.String(1000))
@@ -243,7 +242,7 @@ class BeneficiaryStakeholder(db.Model):
         self.bsLowIncome = bsLowIncome
         
 class SimilarIndicator(db.Model):
-    __tablename__ = "SimilarIndicator"
+    # __tablename__ = "SimilarIndicator"
     identifier = db.Column('sch:identifier', db.String(100), primary_key=True, default='SIM' + str(uuid.uuid4())[:8])
     name = db.Column('sch:name', db.String(100))
     description = db.Column('sch:description', db.String(1000))

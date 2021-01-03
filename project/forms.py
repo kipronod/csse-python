@@ -7,6 +7,10 @@ def length_check(form,field):
     if len(field.data) == 0:
         raise ValidationError('Fields should not be null')
 
+class Login(FlaskForm):
+    username = StringField('Username', validators=[InputRequired('This field is mandatory')])
+    password = StringField('Password', validators=[InputRequired('This field is mandatory')])
+
 class SignUpForm(Form):
     firstname= TextField('First Name', validators= [DataRequired(), length_check])
     lastname = TextField('Last Name', validators= [DataRequired()])
@@ -38,9 +42,22 @@ class FunderForm(Form):
     govinst = BooleanField('Government Institution', default=False)
     submit = SubmitField('Register')
 
-class Login(FlaskForm):
-    username = StringField('Username', validators=[InputRequired('This field is mandatory')])
-    password = StringField('Password', validators=[InputRequired('This field is mandatory')])
+class StakeholderForm(Form):
+    name = StringField('Name', validators=[InputRequired('This field is mandatory')])
+    description = StringField('Description', validators=[InputRequired('This field is mandatory')])
+    location = SelectField('Location', validators=[InputRequired('This field is mandatory')], choices = [(''),('Regional'),('National')], validate_choice=True)
+    bsMinority = BooleanField('Official Language Minority Communities', validators=[Optional()])
+    bsMentalHealth = BooleanField('Living with mental health/additions', validators=[Optional()])
+    bsSeniors = BooleanField('Seniors', validators=[Optional()])
+    bsLGBTQ = BooleanField('LGBTQS+', validators=[Optional()])
+    bsNewcomer = BooleanField('Newcomers and Refugees', validators=[Optional()])
+    bsRacialized = BooleanField('Racialized(all)', validators=[Optional()])
+    bsRemote = BooleanField('Rural, Remote or Northern Community', validators=[Optional()])
+    bsDisabilities = BooleanField('People with disabilities', validators=[Optional()])
+    bsIndigenous = BooleanField('Indigenous', validators=[Optional()])
+    bsWomenGirls = BooleanField('Women and Girls', validators=[Optional()])
+    bsChildrenYouth = BooleanField('Children and Youth', validators=[Optional()])
+    bsLowIncome = BooleanField('Low Income', validators=[Optional()])
 
 class Orgregistration(FlaskForm):
     orgbusnum = StringField('Organization Business Number', validators=[InputRequired('This field is mandatory'), Length(min=9, max=9, message='Your Organization Business Number is exactly 9 digits')])
@@ -65,23 +82,6 @@ class Orgregistration(FlaskForm):
     percentIndegenousBoard = IntegerField('Percent of Indigenous, Inuit or Metis', validators=[InputRequired('This field is mandatory')])
     percentWomenBoard = IntegerField('Percent of Women Owned', validators=[InputRequired('This field is mandatory')])
     percentBlackBoard = IntegerField('Percent of Black Owned', validators=[InputRequired('This field is mandatory')])
-
-class Stkregistration(FlaskForm):
-    title = StringField('Title', validators=[InputRequired('This field is mandatory')])
-    description = StringField('Description', validators=[InputRequired('This field is mandatory')])
-    location = SelectField('Location', validators=[InputRequired('This field is mandatory')], choices = [(''),('Regional'),('National')], validate_choice=True)
-    offlangmincom = BooleanField('Official Language Minority Communities', validators=[Optional()])
-    mentalhealth = BooleanField('Living with mental health/additions', validators=[Optional()])
-    seniors = BooleanField('Seniors', validators=[Optional()])
-    queer = BooleanField('LGBTQS+', validators=[Optional()])
-    newref = BooleanField('Newcomers and Refugees', validators=[Optional()])
-    racial = BooleanField('Racialized(all)', validators=[Optional()])
-    community = BooleanField('Rural, Remote or Northern Community', validators=[Optional()])
-    disability = BooleanField('People with disabilities', validators=[Optional()])
-    indi = BooleanField('Indigenous', validators=[Optional()])
-    female = BooleanField('Women and Girls', validators=[Optional()])
-    child = BooleanField('Children and Youth', validators=[Optional()])
-    lowincome= BooleanField('Low Income', validators=[Optional()])
 
 class Outregistration(FlaskForm):
     title = StringField('Title', validators=[InputRequired('This field is mandatory')])
