@@ -1,20 +1,28 @@
 {% from "_render_field.html" import render_field %}
 
 <html>
-<head>
-<title>Form!</title>
-</head>
-<body>
-<h1><a href="/register">Register</a></h1> <h1><a href="/login">LogIn</a></h1>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+
+    <div class ="header">
+        <div class = "topBar">
+            <a href="/help">Help</a>
+            <a href="/login">Log-In</a>
+        </div>
+
+        <div class = "title">
+            <h1>Register Individual User</h1>
+        </div>
+<div style="background-color: #D9D9D9;border:2px solid #000; position:relative; margin-left:20%; margin-top:5%; width:40%;height:500px;display: flex; flex-direction:column;">
 <form method="POST" action="{{ url_for('funregistration') }}">
     
     {{ form.csrf_token }}
 
-    <h1>Register New User</h1>
+    <h1 style="font-size: larger;">Register New User</h1>
+
     <h2>Contact Information</h2>
-
+    <div>
     {{ render_field(form.firstname) }}
-
+    </div>
     {{ render_field(form.lastname) }}
 
     {{ render_field(form.email) }}
@@ -30,10 +38,8 @@
     {{ render_field(form.govinst) }}
 
     <h2>The CSSE support team will contact the person listed above to confirm the information shared with us.</h2>
-
-    
-    <input type="submit" value="Register">
-    
+    <input style = "margin-left: 45%;margin-top: 5%;"type="submit" value="Register">
+</div>
 </form>
 </body>
 </html>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Funders</title>
+    <title>Outcomes</title>
 
     <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/bootstrap/css/bootstrap-theme.min.css">
@@ -28,31 +28,42 @@
         <a href="/MyOrganization">My Organization</a>
     </div>
     <div class = "title">
-        <h1>Funders</h1>
+        <h1>Outcomes</h1>
     </div>
 </div>
 <body>
     <div class="center">
       <a href="/">Go to Home</a>
-    </div>
-
-<div class="ps">
-  <h2>Funders</h2>
-  {% for i in funders %}
-  <div class="panel panel-info">
-      <h3>Contact Information</h3>
-      <div class="panel-body"><p>{{i.firstname}}</p> </div>
-      <div class="panel-body"><p>{{i.lastname}}</p> </div>
-      <div class="panel-body"><p>{{i.email}}</p> </div>
-      <div class="panel-body"><p>{{i.phone}}</p> </div>
-      <h3>Funder Options</h3>
-      <div class="panel-body"><p>{{i.financialinst}}</p> </div>
-      <div class="panel-body"><p>{{i.academicinst}}</p> </div>
-      <div class="panel-body"><p>{{i.govinst}}</p> </div>
-  </div>
-  {% endfor %}
 </div>
-
+<div class="ps">
+    {% for i in outcomes %}
+    <div class="panel panel-info">
+        <h3>Primary Outcome</h3>
+        <div class="panel-body"><p>{{i.title}}</p> </div>
+        <div class="panel-body"><p>{{i.description}}</p> </div>
+        <h3>Domain</h3>
+        <div class="panel-body"><p>{{i.sdg1}}</p> </div>
+        <div class="panel-body"><p>{{i.sdg2}}</p> </div>
+        <h3>Stakeholder 1</h3>
+        <div class="panel-body"><p>{{i.stakeholder1}}</p> </div>
+        <div class="panel-body"><p>{{i.importance}}</p> </div>
+        <div class="panel-body"><p>{{i.underserved}}</p> </div>
+        <h3>Stakeholder 2</h3>
+        <div class="panel-body"><p>{{i.stakeholder2}}</p> </div>
+        <div class="panel-body"><p>{{i.importance2}}</p> </div>
+        <div class="panel-body"><p>{{i.underserved2}}</p> </div>
+        <h3>Indicator</h3>
+        <div class="panel-body"><p>{{i.indicatorname}}</p> </div>
+        <div class="panel-body"><p>{{i.indicatordescription}}</p> </div>
+        <div class="panel-body"><p>{{i.baseline}}</p> </div>
+        <div class="panel-body"><p>{{i.threshold}}</p> </div>
+        <h3>Risk Optional</h3>
+        <div class="panel-body"><p>{{i.exists}}</p> </div>
+        <div class="panel-body"><p>{{i.probability}}</p> </div>
+        <div class="panel-body"><p>{{i.riskdescription}}</p> </div>
+    </div>
+    {% endfor %}
+    </div>
     <!-- <table class="table">
         <tr class= "table__header">
             {% for header in headings %}

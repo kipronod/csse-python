@@ -1,0 +1,42 @@
+
+<link rel ="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}"type="text/css">
+
+<div class ="header">
+    <div class = "topBar">
+        <a href="/AccountDetails">Account Details</a> 
+        <a href="/MyOrganization">My Organization</a>
+        <!-- changes here  -->
+    </div>
+    <div class = "title">
+        <h1>Reports for out1234</h1> 
+        <!-- Changes here  -->
+    </div>
+</div>
+<body>
+    <div class="center">
+    <input type="button" action = "addOutcome.html" value="Submit New Report">
+    </div>
+    <table class="table">
+        <tr class= "table__header">
+            {% for header in headings %}
+          <th class="table__cell">{{header}}</th>
+          {% endfor %}
+          </tr>
+          {% for row in data %}
+          <tr class="table__row">
+          {% for cell in row %}
+          <td class="table__cell">
+            <a href="/editOutcome">
+                <div>
+                    {{ cell }}
+                </div>
+             </a>
+           </td>
+          
+          {% endfor %}
+          </tr>
+          {% endfor %}
+
+    </table>
+</body>

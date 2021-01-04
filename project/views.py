@@ -8,9 +8,9 @@ from . forms import SignUpForm, SignInForm, UserProfileForm, Login, FunderForm, 
 
 from project import app
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+@app.route('/', methods=['GET'])
+def home():
+    return render_template('home.html')
 
 @app.route('/help', methods=['GET'])
 def help():
@@ -75,7 +75,7 @@ def orgregistration():
         org.percentIndegenousBoard.data, org.percentWomenBoard.data, org.percentBlackBoard.data)
         db.session.add(organization)
         db.session.commit()
-        return redirect(url_for('index'))
+        return redirect(url_for('show_organizations'))
     return render_template('orgregistration.html', form=org)
 
 @app.route('/organizations/delete/<identifier>', methods=('GET', 'POST'))
@@ -97,7 +97,7 @@ def update_organization(identifier):
 @app.route('/stakeholders')
 def show_stakeholders():
     stakeholders = BeneficiaryStakeholder.query.all()
-    return render_template('stakeholders', stakeholders=stakeholders)
+    return render_template('stakeholders.html', stakeholders=stakeholders)
 
 @app.route('/stkregistration', methods=['GET', 'POST'])
 def stkregistration():
@@ -109,7 +109,6 @@ def stkregistration():
         db.session.add(stakeholder)
         db.session.commit()
         return redirect(url_for('show_stakeholders'))
-        console.log('Added')
     return render_template('stkregistration.html', form=stk)
 
 @app.route('/stakeholders/delete/<identifier>', methods=('GET', 'POST'))
@@ -117,7 +116,7 @@ def delete_stakeholder(identifier):
     stakeholder = BeneficiaryStakeholder.query.get(identifier)
     db.session.delete(stakeholder)
     db.session.commit()
-    return redirect(url_for('stakeholders'))
+    return redirect(url_for('stakeholders.html'))
 
 @app.route('/stakeholders/update/<identifier>', methods=('GET', 'POST'))
 def update_stakeholder(identifier):
@@ -134,7 +133,7 @@ def update_stakeholder(identifier):
 @app.route('/outcomes', methods=['GET', 'POST'])
 def show_outcome():
     outcomes = Impact.query.all()
-    return render_template('', outcomes=outcomes)
+    return render_template('outcomes.html', outcomes=outcomes)
 
 @app.route('/outregistration', methods=['GET', 'POST'])
 def outregistration():
@@ -178,8 +177,7 @@ def funregistration():
         fun.financialinst.data, fun.academicinst.data, fun.govinst.data)
         db.session.add(funder)
         db.session.commit()
-        return redirect(url_for(show_funders))
-        print('Added')
+        return redirect(url_for('show_funders'))
     return render_template('funregistration.html', form=fun)
 
 @app.route('/funders/update/<identifier>', methods=('GET', 'POST'))
@@ -192,6 +190,19 @@ def update_funder(identifier):
         db.session.commit()
         return redirect(url_for('funders'))
     return render_template('funregistration.html', funder=funder)
+
+@app.route('/outreport', methods=['GET', 'POST'])
+def outreport():
+    outreport = Outreport()
+    if outreport.validate_on_submit():
+        return '<h1>The Organizatoin Business number is {}. The Legal Name is {}. The Description is {}. The Use of Funds is {}.'.format(form.orgbusnum.data, form.legalname.data, form.description.data, form.use_of_funds.data)
+    return render_template('outreport.html', form=outreport)
+
+@app.route('/users')
+def show_users():
+    organizations = Organization.query.all()
+    funders = Funder.query.all()
+    return render_template('users.html', organizations=organizations, funders=funders)
 
 if __name__ == '__main__':
     app.run()

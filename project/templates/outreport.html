@@ -1,0 +1,75 @@
+{% from "_render_field.html" import render_field %}
+
+<html>
+<head>
+<title>Form!</title>
+</head>
+<body>
+<h1><a href="/register">Register</a></h1> <h1><a href="/login">LogIn</a></h1>
+<form method="POST" action="{{ url_for('funregistration') }}">
+    
+    {{ form.csrf_token }}
+
+    <h1>Outcome Report</h1>
+   
+    {{ render_field(form.title )}}
+
+    {{ render_field(form.orgbusnum )}}
+
+    {{ render_field(form.outcomeid )}}
+
+    <h2>Indicator 1</h2>
+
+    {{ render_field(form.indicator1 )}}
+
+    {{ render_field(form.value )}}
+
+    {{ render_field(form.startdate )}}
+
+    {{ render_field(form.enddate )}}
+
+    {{ render_field(form.comment )}}
+
+    {{ render_field(form.expectation )}}
+
+    {{ render_field(form.scale )}}
+
+    <h3>Counterfactual</h3>
+
+    {{ render_field(form.scalecountervalue )}}
+
+    {{ render_field(form.scalecountersource )}}
+
+    <h2>Depth</h2>
+
+    {{ render_field(form.depthindicator )}}
+
+    {{ render_field(form.depthvalue )}}
+
+    <h3>Counterfactual</h3>
+
+    {{ render_field(form.depcountervalue )}}
+
+    {{ render_field(form.depcountersource )}}
+    
+    <h2>Duration</h2>
+
+    {{ render_field(form.durstartdate )}}
+
+    {{ render_field(form.durenddate )}}
+
+    <h3>Counterfactual</h3>
+
+    {{ render_field(form.durcountervalue )}}
+
+    {{ render_field(form.durcountersource )}}
+
+    {{ render_field(form.outcomment )}}
+
+
+    
+    <input type="submit" value="Submit">
+    
+</form>
+</body>
+</html>

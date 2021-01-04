@@ -1,51 +1,60 @@
 {% from "_render_field.html" import render_field %}
 
 <html>
-<head>
-<title>Form!</title>
-</head>
-<body>
-<h1><a href="/login">LogIn</a></h1> <h1><a href="/help">Help</a></h1>
-<form method="POST" action="{{ url_for('stkregistration') }}">
-    {{ form.csrf_token }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}"type="text/css">
 
-    <h2>Stakeholder Information </h2>
-
-    {{ render_field(form.name) }}
-
-    {{ render_field(form.description) }}
-
-    {{ render_field(form.location) }}
-
-    <h2>Characteristics</h2>
-
-    <h3>Select all that apply</h3>
-
-    {{ render_field(form.bsMinority) }}
-
-    {{ render_field(form.bsMentalHealth) }}
-
-    {{ render_field(form.bsSeniors) }}
-
-    {{ render_field(form.bsLGBTQ) }}
-
-    {{ render_field(form.bsNewcomer) }}
-
-    {{ render_field(form.bsRacialized) }}
-
-    {{ render_field(form.bsRemote) }}
-
-    {{ render_field(form.bsDisabilities) }}
-
-    {{ render_field(form.bsIndigenous) }}
-
-    {{ render_field(form.bsWomenGirls) }}
-
-    {{ render_field(form.bsChildrenYouth) }}
-
-    {{ render_field(form.bsLowIncome) }}
-
-    <input type="submit" value="Submit">
-</form>
+    <div class ="header">
+        <div class = "topBar">
+            <a href="/AccountDetails">Account Details</a> 
+            <a href="/MyOrganization">My Organization</a>
+            
+        </div>
+        <div class = "title">
+            <h1>Stakeholder</h1> 
+            
+        </div>
+    </div>
+    
+    <form method="POST" action="{{ url_for('stkregistration') }}">
+        {{ form.csrf_token }}
+    
+        <h2>Stakeholder Information </h2>
+    
+        {{ render_field(form.name) }}
+    
+        {{ render_field(form.description) }}
+    
+        {{ render_field(form.location) }}
+    
+        <h2>Characteristics</h2>
+    
+        <h3>Select all that apply</h3>
+    
+        {{ render_field(form.bsMinority) }}
+    
+        {{ render_field(form.bsMentalHealth) }}
+    
+        {{ render_field(form.bsSeniors) }}
+    
+        {{ render_field(form.bsLGBTQ) }}
+    
+        {{ render_field(form.bsNewcomer) }}
+    
+        {{ render_field(form.bsRacialized) }}
+    
+        {{ render_field(form.bsRemote) }}
+    
+        {{ render_field(form.bsDisabilities) }}
+    
+        {{ render_field(form.bsIndigenous) }}
+    
+        {{ render_field(form.bsWomenGirls) }}
+    
+        {{ render_field(form.bsChildrenYouth) }}
+    
+        {{ render_field(form.bsLowIncome) }}
+    
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

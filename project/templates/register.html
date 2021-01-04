@@ -1,5 +1,31 @@
-<h1><a href="/login">LogIn</a></h1> <h1><a href="/help">Help</a></h1>
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
 
-<h1>REGISTER</h1>
+    <div class ="header">
+        <div class = "topBar">
+            <a href="/help">Help</a>
+            <a href="/login">Log-In</a>
+        </div>
 
-<h1><a href="/orgregistration">Register as SPO</a></h1> <h1><a href="/funregistration">Register as Funder/Researcher</a></h1>
+        <div class = "title">
+            <h1>Register</h1>
+        </div>
+    </div>
+    <body>
+        <div class = "body">
+            <div class="textbox">
+                <h3>fill</h3>
+                <p>placeholder text</p>
+            </div>
+            <a class="button1" href="/orgregistration">Register as SPO</a>
+            <a class="button2" href="/funregistration">Register as Funder/Researcher</a>
+
+            <div class="textbox2">
+                <h3>fill</h3>
+                <p>placeholder text</p>
+            </div>
+        </div>
+    </body> 
+
+</html>

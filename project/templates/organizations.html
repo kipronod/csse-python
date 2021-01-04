@@ -12,7 +12,8 @@
     <script src="../static/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <link rel ="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}"type="text/css">
     <style type="text/css">
       .ps {
         width: 60%;
@@ -21,23 +22,55 @@
       }
     </style>
   </head>
+<div class ="header">
+    <div class = "topBar">
+        <a href="/AccountDetails">Account Details</a> 
+        <a href="/MyOrganization">My Organization</a>
+    </div>
+    <div class = "title">
+        <h1>Organizations</h1>
+    </div>
+</div>
 <body>
-<div>
-<ul class="nav nav-tabs">
-  <li role="presentation"><a href="/funders">Funders</a></li>
-  <li role="presentation" class="active"><a href="">Organizations</a></li>
-  <li role="presentation"><a href="/stakeholders">Stakeholders</a></li>
-</ul>
+    <div class="center">
+      <a href="/">Go to Home</a>
 </div>
 <div class="ps">
-{% for i in organizations %}
-<div class="panel panel-info">
-    <div class="panel-body"><p>{{i.legalName}}</p> </div>
-    <div class="panel-body"><p>{{i.description}}</p> </div>
-    <div class="panel-body"><p>{{i.useOfFunds}}</p> </div>
-  </div>
-</div>
-{% endfor %}
-</div>    
+    {% for i in organizations %}
+    <div class="panel panel-info">
+        <h3>General Information</h3>
+        <div class="panel-body"><p>{{i.legalName}}</p> </div>
+        <div class="panel-body"><p>{{i.description}}</p> </div>
+        <div class="panel-body"><p>{{i.useOfFunds}}</p> </div>
+        <h3>Address</h3>
+        <div class="panel-body"><p>{{i.address}}</p> </div>
+        <div class="panel-body"><p>{{i.city}}</p> </div>
+        <div class="panel-body"><p>{{i.province}}</p> </div>
+        <div class="panel-body"><p>{{i.postalCode}}</p> </div>
+        <div class="panel-body"><p>{{i.telephone}}</p> </div>
+    </div>
+    {% endfor %}
+    </div>
+    <!-- <table class="table">
+        <tr class= "table__header">
+            {% for header in headings %}
+          <th class="table__cell">{{header}}</th>
+          {% endfor %}
+          </tr>
+          {% for row in data %}
+          <tr class="table__row">
+          {% for cell in row %}
+          <td class="table__cell">
+            <a href="/editOutcome">
+                <div>
+                    {{ cell }}
+                </div>
+             </a>
+           </td>
+          
+          {% endfor %}
+          </tr>
+          {% endfor %}
+    </table> -->
 </body>
 </html>

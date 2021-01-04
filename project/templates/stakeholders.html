@@ -12,7 +12,8 @@
     <script src="../static/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css">
+    <link rel ="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}"type="text/css">
     <style type="text/css">
       .ps {
         width: 60%;
@@ -21,22 +22,62 @@
       }
     </style>
   </head>
+<div class ="header">
+    <div class = "topBar">
+        <a href="/AccountDetails">Account Details</a> 
+        <a href="/MyOrganization">My Organization</a>
+    </div>
+    <div class = "title">
+        <h1>Stakeholders</h1>
+    </div>
+</div>
 <body>
-<div>
-<ul class="nav nav-tabs">
-  <li role="presentation"><a href="/funders">Funders</a></li>
-  <li role="presentation"><a href="/organizations">Organizations</a></li>
-  <li role="presentation" class="active"><a href="">Stakeholders</a></li>
-</ul>
+    <div class="center">
+    <input  type=button action = "addOutcome.html" value="Add a New Stakeholder">
 </div>
 <div class="ps">
-{% for i in stakeholders %}
-<div class="panel panel-info">
-  <div class="panel-body"><p>{{i.name}}</p> </div>
-  <div class="panel-body"><p>{{i.description}}</p> </div>
-  <div class="panel-body"><p>{{i.location}}</p> </div>
-</div>
-{% endfor %}
-</div>    
+    {% for i in stakeholders %}
+    <div class="panel panel-info">
+        <h3>Stakeholder Information</h3>
+        <div class="panel-body"><p>{{i.name}}</p> </div>
+        <div class="panel-body"><p>{{i.description}}</p> </div>
+        <div class="panel-body"><p>{{i.location}}</p> </div>
+        <h3>Characteristics</h3>
+        <div class="panel-body"><p>{{i.bsMinority}}</p> </div>
+        <div class="panel-body"><p>{{i.bsMentalHealth}}</p> </div>
+        <div class="panel-body"><p>{{i.bsSeniors}}</p> </div>
+        <div class="panel-body"><p>{{i.bsLGBTQ}}</p> </div>
+        <div class="panel-body"><p>{{i.bsNewcomer}}</p> </div>
+        <div class="panel-body"><p>{{i.bsRacialized}}</p> </div>
+        <div class="panel-body"><p>{{i.bsRemote}}</p> </div>
+        <div class="panel-body"><p>{{i.bsDisabilities}}</p> </div>
+        <div class="panel-body"><p>{{i.bsIndigenous}}</p> </div>
+        <div class="panel-body"><p>{{i.bsWomenGirls}}</p> </div>
+        <div class="panel-body"><p>{{i.bsChildrenYouth}}</p> </div>
+        <div class="panel-body"><p>{{i.bsLowIncome}}</p> </div>
+    </div>
+    {% endfor %}
+    </div>
+    <!-- <table class="table">
+        <tr class= "table__header">
+            {% for header in headings %}
+          <th class="table__cell">{{header}}</th>
+          {% endfor %}
+          </tr>
+          {% for row in data %}
+          <tr class="table__row">
+          {% for cell in row %}
+          <td class="table__cell">
+            <a href="/editOutcome">
+                <div>
+                    {{ cell }}
+                </div>
+             </a>
+           </td>
+          
+          {% endfor %}
+          </tr>
+          {% endfor %}
+    </table> -->
 </body>
 </html>

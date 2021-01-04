@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Funders</title>
+    <title>Users</title>
 
     <link href="../static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/bootstrap/css/bootstrap-theme.min.css">
@@ -28,13 +28,31 @@
         <a href="/MyOrganization">My Organization</a>
     </div>
     <div class = "title">
-        <h1>Funders</h1>
+        <h1>Users</h1>
     </div>
 </div>
 <body>
     <div class="center">
-      <a href="/">Go to Home</a>
-    </div>
+    <input  type=button action = "addOutcome.html" value="Add a New Stakeholder">
+</div>
+
+<div class="ps">
+  <h2>Organizations</h2>
+  {% for i in organizations %}
+  <div class="panel panel-info">
+      <h3>General Information</h3>
+      <div class="panel-body"><p>{{i.legalName}}</p> </div>
+      <div class="panel-body"><p>{{i.description}}</p> </div>
+      <div class="panel-body"><p>{{i.useOfFunds}}</p> </div>
+      <h3>Address</h3>
+      <div class="panel-body"><p>{{i.address}}</p> </div>
+      <div class="panel-body"><p>{{i.city}}</p> </div>
+      <div class="panel-body"><p>{{i.province}}</p> </div>
+      <div class="panel-body"><p>{{i.postalCode}}</p> </div>
+      <div class="panel-body"><p>{{i.telephone}}</p> </div>
+  </div>
+  {% endfor %}
+</div>
 
 <div class="ps">
   <h2>Funders</h2>

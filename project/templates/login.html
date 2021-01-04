@@ -1,16 +1,26 @@
 {% from "_render_field.html" import render_field %}
 
 <html>
-<head>
-<title>Form!</title>
-</head>
-<body>
-<h1><a href="/help">Help</a></h1> <h1><a href="/register">Register</a></h1>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+
+    <div class ="header">
+        <div class = "topBar">
+            <a href="/help">Help</a>
+            <a href="/register">Register</a>
+        </div>
+
+        <div class = "title">
+            <h1>Log-In</h1>
+        </div>
+    </div>
+    
+    <div style="background-color: #D9D9D9;border:2px solid #000; position:relative; margin-left:35%; margin-top:35px; width:30%;height:300px; display: flex; flex-direction:column; align-items: center;">
 <form method="POST" action="{{ url_for('login') }}">
     {{ form.csrf_token }}
 
+    <div style="position:relative; margin-top:45%">
     <h2>Log In</h2>
-
+    
     {{ render_field(form.username )}}
 
     {{ render_field(form.password )}}
@@ -20,8 +30,9 @@
     <input type="submit" value="Login">
 
     <input type="submit" value="Forgot my Password">
+    </div>
 
-    
 </form>
+</div>
 </body>
 </html>
