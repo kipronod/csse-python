@@ -3,7 +3,7 @@ from flask_wtf import Form, FlaskForm
 import uuid
 import datetime
 
-from . models import Organization, BeneficiaryStakeholder, Impact, Funder, db
+from . models import Organization, BeneficiaryStakeholder, Impact, Funder, OutcomeReport, db
 from . forms import SignUpForm, SignInForm, UserProfileForm, Login, FunderForm, StakeholderForm, Orgregistration, Outregistration
 
 from project import app
@@ -93,6 +93,34 @@ def update_organization(identifier):
     db.session.commit()
     return redirect(url_for('organizations'))
 
+# Funder registration
+@app.route('/funders', methods=['GET', 'POST'])
+def show_funders():
+    funders = Funder.query.all()
+    return render_template('funders.html', funders=funders)
+
+@app.route('/funregistration', methods=['GET', 'POST'])
+def funregistration():
+    fun = FunderForm(request.form)
+    if request.method == 'POST':
+        funder = Funder(fun.firstname.data, fun.lastname.data, fun.email.data, fun.phone.data, \
+        fun.financialinst.data, fun.academicinst.data, fun.govinst.data)
+        db.session.add(funder)
+        db.session.commit()
+        return redirect(url_for('show_funders'))
+    return render_template('funregistration.html', form=fun)
+
+@app.route('/funders/update/<identifier>', methods=('GET', 'POST'))
+def update_funder(identifier):
+    fun = Funder.query.get(identifier)
+    funder = FunderForm(obj=fun)
+    if request.method == 'POST':
+        fun = Funder.query.get(identifier)
+        fun.name = funder.name.data
+        db.session.commit()
+        return redirect(url_for('funders'))
+    return render_template('funregistration.html', funder=funder)
+
 # Stakeholder
 @app.route('/stakeholders')
 def show_stakeholders():
@@ -163,40 +191,10 @@ def update_outcome(identifier):
         return redirect(url_for('outcomes'))
     return render_template('outregistration.html', funder=funder)
 
-# Funder registration
-@app.route('/funders', methods=['GET', 'POST'])
-def show_funders():
-    funders = Funder.query.all()
-    return render_template('funders.html', funders=funders)
-
-@app.route('/funregistration', methods=['GET', 'POST'])
-def funregistration():
-    fun = FunderForm(request.form)
-    if request.method == 'POST':
-        funder = Funder(fun.firstname.data, fun.lastname.data, fun.email.data, fun.phone.data, \
-        fun.financialinst.data, fun.academicinst.data, fun.govinst.data)
-        db.session.add(funder)
-        db.session.commit()
-        return redirect(url_for('show_funders'))
-    return render_template('funregistration.html', form=fun)
-
-@app.route('/funders/update/<identifier>', methods=('GET', 'POST'))
-def update_funder(identifier):
-    fun = Funder.query.get(identifier)
-    funder = FunderForm(obj=fun)
-    if request.method == 'POST':
-        fun = Funder.query.get(identifier)
-        fun.name = funder.name.data
-        db.session.commit()
-        return redirect(url_for('funders'))
-    return render_template('funregistration.html', funder=funder)
-
-@app.route('/outreport', methods=['GET', 'POST'])
+@app.route('/reports', methods=['GET', 'POST'])
 def outreport():
-    outreport = Outreport()
-    if outreport.validate_on_submit():
-        return '<h1>The Organizatoin Business number is {}. The Legal Name is {}. The Description is {}. The Use of Funds is {}.'.format(form.orgbusnum.data, form.legalname.data, form.description.data, form.use_of_funds.data)
-    return render_template('outreport.html', form=outreport)
+    outcomereports = OutcomeReport.query.all()
+    return render_template('reports.html', outcomereports=outcomereports)
 
 @app.route('/users')
 def show_users():
