@@ -7,30 +7,18 @@ def length_check(form,field):
     if len(field.data) == 0:
         raise ValidationError('Fields should not be null')
 
-class Login(FlaskForm):
-    username = StringField('Username', validators=[InputRequired('This field is mandatory')])
-    password = StringField('Password', validators=[InputRequired('This field is mandatory')])
-
-class SignUpForm(Form):
-    firstname= TextField('First Name', validators= [DataRequired(), length_check])
-    lastname = TextField('Last Name', validators= [DataRequired()])
-    username = TextField('User Name', validators= [ DataRequired(), Length(min=4)])
-    password = PasswordField('Password',validators=[ DataRequired(), Length(min=6)])
-    email = EmailField('Email', validators= [DataRequired(), Email()])
-    submit = SubmitField('Sign Up')
-
-class SignInForm(Form):
+class LoginForm(Form):
     email = EmailField('Email', validators = [DataRequired(), Email()])
     password = PasswordField('Password', validators = [DataRequired(), Length(min=6, max=30)])
     remember_me = BooleanField('Keep me logged in')
-    submit = SubmitField('Sign In')
+    submit = SubmitField('Login')
 
-class UserProfileForm(Form):
+class RegisterForm(Form):
     firstname= TextField('First Name', validators= [DataRequired(), length_check])
     lastname = TextField('Last Name', validators= [DataRequired()])
-    username = TextField('User Name', validators= [ DataRequired(), Length(min=4)])
     password = PasswordField('Password',validators=[ DataRequired(), Length(min=6)])
     email = EmailField('Email', validators= [DataRequired(), Email()])
+    submit = SubmitField('Register')
 
 class FunderForm(Form):
     firstname = TextField('First Name', validators= [DataRequired()])

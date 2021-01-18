@@ -5,12 +5,13 @@
 
     <div class ="header">
         <div class = "topBar">
-            <a href="/help">Help</a>
+            <a href="/login">Login</a>
             <a href="/register">Register</a>
+            <a href="/help">Help</a>
         </div>
 
         <div class = "title">
-            <h1>Log-In</h1>
+            <h1>Log In</h1>
         </div>
     </div>
     
@@ -21,11 +22,9 @@
     <div style="position:relative; margin-top:45%">
     <h2>Log In</h2>
     
-    {{ render_field(form.username )}}
+    {{ render_field(form.email) }}
 
-    {{ render_field(form.password )}}
-
-
+    {{ render_field(form.password) }}
     
     <input type="submit" value="Login">
 

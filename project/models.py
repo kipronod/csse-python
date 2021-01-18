@@ -5,6 +5,20 @@ from project import app
 
 db = SQLAlchemy(app)
 
+class User(db.Model):
+    identifier = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    firstname = db.Column(db.String(100))
+    lastname = db.Column(db.String(100))
+    email = db.Column(db.String(100), unique=True, index=True)
+    password = db.Column(db.String(100))
+    dateCreated = db.Column(db.DateTime, default=datetime.datetime.now)
+
+    def __init__(self, firstname, lastname, email, password):
+        self.firstname = firstname
+        self.lastname = lastname
+        self.email = email
+        self.password = password
+
 class Funder(db.Model):
     # __tablename__ = "Funder"
     identifier = db.Column(db.String(100), primary_key=True, default='FUN' + str(uuid.uuid4())[:8])

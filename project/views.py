@@ -3,14 +3,14 @@ from flask_wtf import Form, FlaskForm
 import uuid
 import datetime
 
-from . models import Organization, BeneficiaryStakeholder, Impact, Funder, OutcomeReport, db
-from . forms import SignUpForm, SignInForm, UserProfileForm, Login, FunderForm, StakeholderForm, Orgregistration, Outregistration
+from . models import User, Organization, BeneficiaryStakeholder, Impact, Funder, OutcomeReport, db
+from . forms import LoginForm, RegisterForm, FunderForm, StakeholderForm, Orgregistration, Outregistration
 
 from project import app
 
 @app.route('/', methods=['GET'])
-def home():
-    return render_template('home.html')
+def index():
+    return render_template('index.html')
 
 @app.route('/help', methods=['GET'])
 def help():
@@ -18,44 +18,31 @@ def help():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    login = Login()
-    return render_template('login.html', form=login)
-
-@app.route('/register', methods=['GET'])
-def register():
-    return render_template('register.html')
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    signupform = SignUpForm(request.form)
+    logininform = LoginForm()
     if request.method == 'POST':
-        reg = User(signupform.firstname.data, signupform.lastname.data,\
-         signupform.username.data, signupform.password.data,\
-         signupform.email.data)
-        db.session.add(reg)
-        db.session.commit()
-        return redirect(url_for('index'))
-    return render_template('signup.html', signupform=signupform)
-
-# Authentication
-@app.route('/signin', methods=['GET', 'POST'])
-def signin():
-    signinform = SignInForm()
-    if request.method == 'POST':
-        em = signinform.email.data
+        em = logininform.email.data
         log = User.query.filter_by(email=em).first()
-        if log.password == signinform.password.data:
-            current_user = log.username
+        if log.password == logininform.password.data:
+            current_user = log.email
             session['current_user'] = current_user
             session['user_available'] = True
-            return redirect(url_for('index'))
-    return render_template('signin.html', signinform=signinform)
+            return redirect(url_for('dashboard'))
+    return render_template('login.html', form=logininform)
 
-@app.route('/logout')
-def logout():
-    session.clear()
-    session['user_available'] = False
-    return redirect(url_for('index'))
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    registerform = RegisterForm(request.form)
+    if request.method == 'POST':
+        reg = User(registerform.firstname.data, registerform.lastname.data,\
+         registerform.email.data, registerform.password.data)
+        db.session.add(reg)
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+    return render_template('register.html', form=registerform)
+
+@app.route('/dashboard', methods=['GET'])
+def dashboard():
+    return render_template('dashboard.html')
 
 # Organization
 @app.route('/organizations')
@@ -201,6 +188,12 @@ def show_users():
     organizations = Organization.query.all()
     funders = Funder.query.all()
     return render_template('users.html', organizations=organizations, funders=funders)
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    session['user_available'] = False
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run()
