@@ -14,6 +14,7 @@ class LoginForm(Form):
     submit = SubmitField('Login')
 
 class RegisterForm(Form):
+    # register_as = SelectField('Register as', validators=[InputRequired('This field is mandatory')], choices = [(''),('Organization'),('Funder')], validate_choice=True)
     firstname= TextField('First Name', validators= [DataRequired(), length_check])
     lastname = TextField('Last Name', validators= [DataRequired()])
     password = PasswordField('Password',validators=[ DataRequired(), Length(min=6)])
