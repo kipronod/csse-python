@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block pageheader %} Dashboard {% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-3">
+      <div class="container pt-3 mb-2 bg-light text-dark">
+      <div class="input-group">
+        <div class="form-outline">
+          <input type="search" id="form1" class="form-control" placeholder="Search"/>
+          
+        
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+        <p>filters</p>
+        
+      </div>
+    </div>
+    </div>
+    
+    <div class="col-md-4"><h5>Organization Information</h5>
+    <div class="row">
+      <div class="col-sm-6">
+        Legal Name:
+      </div>
+      <div class="col-sm-6">
+        {{i.legalName}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        Business Number:
+      </div>
+      <div class="col-sm-6">
+        {{i.identifier}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        Use of Funds:
+      </div>
+      <div class="col-sm-6">
+        {{i.useOfFunds}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        Address:
+      </div>
+      <div class="col-sm-6">
+        {{i.address}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        Telephone:
+      </div>
+      <div class="col-sm-6">
+        {{i.telephone}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="text-center">
+        <button type="button" class="btn btn-primary">View/Update</button>
+      
+      
+    </div>
+      </div>
+    
+  
+    
+    </div>
+  
+    <div class="col-md-3"><h5>Beneficiary Stakeholders </h5>
+      <div class="row">
+        <div class="col-sm-6">
+          Identifier
+        </div>
+        <div class="col-sm-6">
+          Name
+        </div>
+      </div>
+      {% for st in s %}
+      <div class="row">
+        <div class="col-sm-6">
+          {{st.identifier}}
+        </div>
+        <div class="col-sm-6">
+          {{st.name}}
+        </div>
+      </div>
+      {% endfor %}
+      <div class="row">
+        <div class="text-center">
+          <button type="button" class="btn btn-primary">See all stakeholders</button>
+        
+        
+      </div>
+        </div>
+    
+    
+    </div>
+
+  <div class="col-md-2"><h5>Users</h5>
+    <div class="row">
+      <h5>Admins</h5>
+    </div>
+    {% for u in a_users %}
+    <div class="row">
+      {{u.firstname }} {{u.lastname}}
+    </div>
+    {% endfor %}
+    
+  
+  </div>
+
+  
+  <div class="row"> 
+    <div class="col-md-3"></div>
+    <div class="col-md-7"><h5>Outcomes</h5>
+      <div class="row">
+        <div class="col-sm-3">
+          Outcome1
+        </div>
+        <div class="col-sm-3">
+          Report For Out1
+        </div>
+        <div class="col-sm-3">
+          Add New Report
+        </div>
+        <div class="col-sm-3">
+          Edit
+        </div>
+      </div> 
+
+    </div>
+
+  
+      <div class="col-md-2"> 
+        <div class="row">
+          <h5>Editors</h5>
+        </div>
+        {% for u in e_users %}
+        <div class="row">
+          {{u.firstname }} {{u.lastname}}
+        </div>
+        {% endfor %}
+        <div class="row">
+          <h5>Viewers</h5>
+        </div>
+        {% for u in v_users %}
+        <div class="row">
+          {{u.firstname }} {{u.lastname}}
+        </div>
+        {% endfor %}
+        <div class="row">
+      
+          <div class="button">
+          <button>Manage Users</button>
+          
+          </div>
+        </div>
+      </div>
+</div>
+
+
+    
+    </div>
+
+    
+  </div>
+</div>
+{% endblock %}
