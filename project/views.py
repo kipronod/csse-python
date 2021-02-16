@@ -195,5 +195,12 @@ def logout():
     session['user_available'] = False
     return redirect(url_for('index'))
 
+@app.route('/myOrganization', methods=['GET'])
+def myOrg():
+    organizations = Organization.query.first()
+    stakeholders=BeneficiaryStakeholder.query.all()
+    users=User.query.all()
+    return render_template('myOrganization.html', i=organizations, s=stakeholders, a_users=users,v_users=users, e_users=users )
+
 if __name__ == '__main__':
     app.run()
