@@ -114,6 +114,12 @@ def show_stakeholders():
     stakeholders = BeneficiaryStakeholder.query.all()
     return render_template('stakeholders.html', stakeholders=stakeholders)
 
+# MyStakeholder
+@app.route('/myStakeholders', methods=('GET', 'POST'))
+def show_mystakeholders():
+    stakeholders = BeneficiaryStakeholder.query.all()
+    return render_template('myStakeholders.html', stakeholders=stakeholders)
+
 @app.route('/stkregistration', methods=['GET', 'POST'])
 def stkregistration():
     stk = StakeholderForm(request.form)
