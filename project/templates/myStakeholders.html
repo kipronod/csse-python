@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %} Stakeholders {% endblock %}
+{% block pageheader %} Stakeholders {% endblock %}
+{% block content %}
+
+<style>
+  #todays-table {
+    margin: 40px;
+}
+</style>
+<div class="media">
+  <div class="media-body">
+
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-xs-12" id="todays-table">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Stakeholder Code</th>
+                  <th>Stakeholder Title</th>
+                  <th>Edit Stakeholder</th>
+                  <th>View Stakeholders</th>
+                </tr>
+              </thead>
+              {% for i in stakeholders%}
+              <tr class="table__row">
+          
+                <td>{{i.identifier}}</td>
+                <td>{{i.name}}</td>
+                <td><a href="/stkregistration">Edit</a></td>
+                <td><a href="/stkregistration">Take Me There</a></td>
+              </tr>
+              {% endfor %}
+       
+            </table>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="text-center">
+    <button type="button" class="btn btn-primary">Add stakeholder</button>
+  
+  
+</div>
+  </div>
+
+{% endblock %}
