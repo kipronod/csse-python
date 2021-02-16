@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block pageheader %} <h5>Registration</h5> {% endblock %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-4">
+        
+            <p style="margin-left: 35px;">This registration is for members associated with a registered organization</p>
+
+        
+    </div>
+
+      
+    <div class="col-md-4">
+        
+        <p style="margin-left: 10px;">This registration is for Social Purpose Organizations (SPO) that are located in Ontario</p>
+
+        
+    </div>
+
+      
+
+    <div class="col-md-4">
+      
+          <p style="margin-left: 10px;">This registration is for Funder Organizations</p>
+
+        
+    </div>
+
+    </div>
+
+<div class="row"> 
+<div class="col-md-4">
+    <div class="text-center">
+        <a href="register"><button type="button" class="btn btn-primary">user registration</button></a>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="text-center">
+        <a href="orgregistration"><button type="button" class="btn btn-primary">SPO registration</button></a>
+    </div>
+</div>
+<div class="col-md-4">
+    <div class="text-center">
+        <a href="funregistration"><button type="button" class="btn btn-primary">funder registration</button></a>
+    </div>
+</div> 
+</div> 
+
+{% endblock %}

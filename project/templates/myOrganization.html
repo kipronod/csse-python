@@ -7,26 +7,27 @@
 
 {% block content %}
 
-<div class="row">
+<div class="row" style="margin-top: 20px;">
     <div class="col-md-3">
       <div class="container pt-3 mb-2 bg-light text-dark">
-      <div class="input-group">
-        <div class="form-outline">
-          <input type="search" id="form1" class="form-control" placeholder="Search"/>
+      
+        <div class="input-group">
+          <div class="form-outline">
+            <input type="search" id="form1" class="form-control" placeholder="Search"/>
           
-        
+          </div>
+            <!-- <button type="button" class="btn btn-primary"> -->
+            <i class="fas fa-search"></i>
+            <!-- </button> -->
         </div>
-        <button type="button" class="btn btn-primary">
-          <i class="fas fa-search"></i>
-        </button>
+        <p></p>
         <p>filters</p>
         
-      </div>
-    </div>
-    </div>
+      </div> 
+  </div>
     
     <div class="col-md-4"><h5>Organization Information</h5>
-    <div class="row">
+      <div class="row" style="margin-top: 20px;">
       <div class="col-sm-6">
         Legal Name:
       </div>
@@ -66,9 +67,9 @@
         {{i.telephone}}
       </div>
     </div>
-    <div class="row">
+    <div class="row" style="margin-top: 30px;">
       <div class="text-center">
-        <button type="button" class="btn btn-primary">View/Update</button>
+      <a href="myOrgInfo"><button type="button" class="btn btn-primary">View/Update</button></a>
       
       
     </div>
@@ -79,7 +80,7 @@
     </div>
   
     <div class="col-md-3"><h5>Beneficiary Stakeholders </h5>
-      <div class="row">
+      <div class="row" style="margin-top: 20px;">
         <div class="col-sm-6">
           Identifier
         </div>
@@ -97,9 +98,9 @@
         </div>
       </div>
       {% endfor %}
-      <div class="row">
+      <div class="row" style="margin-top: 30px;">
         <div class="text-center">
-          <button type="button" class="btn btn-primary">See all stakeholders</button>
+          <a href="/myStakeholders"><button type="button" class="btn btn-primary">See All Stakeholders</button></a>
         
         
       </div>
@@ -109,8 +110,8 @@
     </div>
 
   <div class="col-md-2"><h5>Users</h5>
-    <div class="row">
-      <h5>Admins</h5>
+    <div class="row" style="margin-top: 20px;">
+      <h6>Admins:</h6>
     </div>
     {% for u in a_users %}
     <div class="row">
@@ -122,48 +123,67 @@
   </div>
 
   
-  <div class="row"> 
+  <div class="row" >
     <div class="col-md-3"></div>
     <div class="col-md-7"><h5>Outcomes</h5>
-      <div class="row">
+      <div class="row" style="margin-top: 20px;">
         <div class="col-sm-3">
-          Outcome1
+          Primary Outcome
         </div>
         <div class="col-sm-3">
-          Report For Out1
+          <a href="reports"> Report For Out1</a>
         </div>
         <div class="col-sm-3">
-          Add New Report
+          <a href="outreport"> Add New Report</a>
         </div>
         <div class="col-sm-3">
           Edit
         </div>
       </div> 
+      <div class="row" >
+        <div class="col-sm-3">
+          Secondary Outcome
+        </div>
+        <div class="col-sm-3">
+          <a href="reports"> Report For Out2</a>
+        </div>
+        <div class="col-sm-3">
+          <a href="/outreport"> Add New Report</a>
+        </div>
+        <div class="col-sm-3">
+          Edit
+        </div>
+      </div>
+      <div class="row" style="margin-top: 30px;">
+        <div class="text-center">
+          <a href="outregistration"><button type="button" class="btn btn-primary">Add Outcome</button></a>
+        </div>
+      </div>
+
 
     </div>
 
   
       <div class="col-md-2"> 
         <div class="row">
-          <h5>Editors</h5>
+          <h6>Editors:</h6>
         </div>
         {% for u in e_users %}
         <div class="row">
           {{u.firstname }} {{u.lastname}}
         </div>
         {% endfor %}
-        <div class="row">
-          <h5>Viewers</h5>
+        <div class="row" style="margin-top: 25px;">
+          <h6>Viewers:</h6>
         </div>
         {% for u in v_users %}
         <div class="row">
           {{u.firstname }} {{u.lastname}}
         </div>
         {% endfor %}
-        <div class="row">
-      
-          <div class="button">
-          <button>Manage Users</button>
+        <div class="row" style="margin-top: 30px;">
+          <div class="text-center">
+            <button type="button" class="btn btn-primary">Manage Users</button>
           
           </div>
         </div>

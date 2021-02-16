@@ -1,14 +1,13 @@
-<link rel ="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% extends 'base.html' %}
 
-    <div class ="header">
-        <div class = "topBar">
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-            <a href="/help">Help</a>
-        </div>
+{% block title %}Social Services Repository{% endblock %}
+
+{% block pageheader %} CSSE {% endblock %}
+{% block content %}
+<div class="row">
+<div class="col-md-12">
+    <p></p>
+    <p class="text-center">This website is aimed to provide a common repository for the Social Purpose Organizations in Ontario.</p>
     </div>
-
-    <div>
-        <a href="/">Social Services Repository</a>
     </div>
-
+{% endblock %}

@@ -188,7 +188,21 @@ def update_outcome(identifier):
 def outreport():
     outcomereports = OutcomeReport.query.all()
     return render_template('reports.html', outcomereports=outcomereports)
-
+# #needs to be modified
+# @app.route('/outreport', methods=['GET','POST'])
+# def outreportreg():
+#     out = OutcomeReport()
+#     if request.method == 'POST':
+#         name = out.title.data
+#         identifier = out.identifier.data
+        
+#         outcomerep = OutcomeReport(name, identifier)
+#         db.session.add(outcomerep)
+#         db.session.commit()
+#         return redirect(url_for('outcomes'))
+#         console.log('Added')
+#     return render_template('outreport.html', form=out)
+    
 @app.route('/users')
 def show_users():
     organizations = Organization.query.all()
@@ -201,12 +215,23 @@ def logout():
     session['user_available'] = False
     return redirect(url_for('index'))
 
-@app.route('/myOrganization', methods=['GET'])
+@app.route('/myOrganization', methods=['GET', 'POST'])
 def myOrg():
     organizations = Organization.query.first()
     stakeholders=BeneficiaryStakeholder.query.all()
     users=User.query.all()
     return render_template('myOrganization.html', i=organizations, s=stakeholders, a_users=users,v_users=users, e_users=users )
+@app.route('/registerationMenu', methods=['GET', 'POST'])
+def regMenu():
+    return render_template('registerationMenu.html')
 
+@app.route('/myOrgInfo', methods=['GET'])
+def orgInfo():
+    organizations = Organization.query.first()
+    return render_template('myOrgInfo.html', i=organizations)
+@app.route('/stkInfo', methods=['GET'])
+def stkInfo():
+    stakeholders = BeneficiaryStakeholder.query.first()
+    return render_template('stkInfo.html', i=stakeholders)
 if __name__ == '__main__':
     app.run()

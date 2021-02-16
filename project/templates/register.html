@@ -1,40 +1,57 @@
+
+{% extends 'base.html' %}
+
+{% block title %}User Registeration{% endblock %}
+
+{% block pageheader %}  Registeration{% endblock %}
+
+
+{% block content %}
 {% from "_render_field.html" import render_field %}
+<div style="background-color: #D9D9D9;border:2px solid #000; position:relative; margin-left:35%; margin-top:10px; width:30%;height:600px; display: flex; flex-direction:column; align-items: center;">
+ 
+    <form method="POST" action="{{ url_for('register') }}"> 
 
-<html>
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/styles.css') }}">
+  <div style="position:relative; margin-top:15%">
+  <h2>Register</h2> 
 
-    <div class ="header">
-        <div class = "topBar">
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-            <a href="/help">Help</a>
-        </div>
 
-        <div class = "title">
-            <h1>Register</h1>
-        </div>
-    </div>
-    
-    <div style="background-color: #D9D9D9;border:2px solid #000; position:relative; margin-left:35%; margin-top:35px; width:30%;height:300px; display: flex; flex-direction:column; align-items: center;">
-<form method="POST" action="{{ url_for('register') }}">
-    {{ form.csrf_token }}
+  <form>
+    <div class="mb-3">
+        <label for="firstname" class="form-label">First Name</label>
+        <input type="text" name = "fname" class="form-control" id="email" aria-describedby="fnameHelp">
+        
+      </div>
+      <div class="mb-3">
+        <label for="lastname" class="form-label">Last Name</label>
+        <input type="text" name = "lname" class="form-control" id="email" aria-describedby="fnameHelp">
+      </div>
 
-    <div style="position:relative; margin-top:45%">
-    <h2>Register</h2>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" name = "email" class="form-control" id="email" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name = "password" class="form-control" id="password">
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="remember_me">
+        <label class="form-check-label" for="remember_me">Remember Me</label>
+      </div>
+      <button type="submit" class="btn btn-primary" ><a href="myOrganization"></a>Submit</button>
+      
 
-    {{ render_field(form.firstname) }}
+    </form>    
 
-    {{ render_field(form.lastname) }}
+  </div>
 
-    {{ render_field(form.email) }}
-
-    {{ render_field(form.password) }}
-
-    <input type="submit" value="Register">
-
-    </div>
 
 </form>
+
 </div>
-</body>
-</html>
+
+
+
+{% endblock %}

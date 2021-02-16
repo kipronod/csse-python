@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block title %}SPO Information{% endblock %}
+
+{% block pageheader %} <h5>Organization Information</h5>{% endblock %}
+
+
+{% block content %}
+
+    <!-- <script src="bootstrap-validate.js"></script>
+    <script>
+        bootstrapValidate('#orgbusnum','min:9:styoobid')
+    </script> -->
+     
+    <div style="background-color: #D9D9D9;border:2px solid #000; position:relative; margin-left:35%; margin-top:35px; width:30%;height:1400px; display: flex; flex-direction:column; align-items: center;">
+ 
+     
+
+    <div style="position:relative; margin-top:5%; margin-left: 5%;">
+    <h2>Organization Information</h2> 
+
+    
+    
+    <div class="mb-3">
+      <label for="orgbusnum" class="form-label">Organization Business Number:</label>
+      {{i.identifier}}
+    </div>
+
+    <div class="mb-3">
+        <label for="legalname" class="form-label">Business Legal Name:</label>
+        {{i.legalName}}
+    </div>
+    <div class="mb-3">
+    <label for="legalname" class="form-label">Description:</label>
+        
+        
+        {{i.description}}  
+    </div>
+
+    <div class="mb-3">
+        <label for="useofFunds" class="form-label">Use of Funds:</label>
+        {{i.useofFunds}}
+    </div>
+
+    <h5>Mailing Address</h5>
+
+
+    <div class="mb-3">
+        <label for="address" class="form-label">Address:</label>
+        {{i.address}}
+    </div>
+
+    <div class="mb-3">
+        <label for="city" class="form-label">City:</label>
+        {{i.city}}
+    </div>
+    <div class="mb-3">
+        <p>Province:</p>
+        {{i.Province}}
+    
+     
+    <div class="mb-3">
+        <label for="postalcode" class="form-label">Postal Code:</label>
+        {{i.postalcode}}
+    </div>
+
+    <div class="mb-3">
+        <label for="telephone" class="form-label">Telephone:</label>
+        {{i.telephone}}
+    </div>
+
+    <h6>Contact Information:</h6>
+
+    <div class="mb-3">
+        <label for="hasContactFirstNameS" class="form-label">First Name:</label>
+        {{i.hasContactFirstNameS}}
+    </div>
+
+    <div class="mb-3">
+        <label for="hasContactLastNameS" class="form-label">Last Name:</label>
+        {{i.hasContactLastNameS}}
+    </div>
+
+
+    <div class="mb-3">
+        <label for="hasContactPhoneS" class="form-label">Phone Number:</label>
+        {{i.hasContactPhoneS}}
+    </div>
+
+    <h5>Board</h5>
+
+    <div class="mb-3 ">
+        
+        <label class="form-check-label" for="womanOwned">
+          Woman Owned:
+        </label>
+        {{i.womanOwned}}
+        </div>
+    <div class="mb-3">
+       
+        Indigenous Owned:{{i.indigenousOwned}}
+          
+    </div>
+    <div class="mb-3">
+        
+        <label class="form-check-label" for="blackOwned">
+            Black Owned:
+        </label>
+        {{i.blackOwned}}
+    </div>
+    <div class="mb-3">
+            <label for="percentIndegenousLeaders" class="form-label">Percent of Indigenous, Inuit or Metis Leaders:</label>
+            {{i.percentIndegenousLeaders}}
+        </div>
+    
+    <div class="mb-3">
+            <label for="percentWomenLeaders" class="form-label">Percent Women Leaders:</label>
+            {{i.percentWomenLeaders}}
+        </div>
+        
+        
+    <div class="mb-3">
+            <label for="percentBlackLeaders" class="form-label">Percent Black Leaders:</label>
+            {{i.percentBlackLeaders}}
+        </div>
+
+
+    <div class="mb-3">
+            <label for="percentIndegenousBoard" class="form-label">Percent Indigenous Board Members:</label>
+            {{i.percentIndegenousBoard}}
+        </div>
+
+
+    <div class="mb-3">
+            <label for="percentWomenBoard" class="form-label">Percent Women Board:</label>
+            {{i.percentWomenBoard}}
+        </div>
+
+    <div class="mb-3">
+            <label for="percentBlackBoard" class="form-label">Percent Black Board:</label>
+            {{i.percentBlackBoard}}
+        </div>  
+
+       
+    
+
+
+      </form>    
+
+    </div>
+
+
+</form>
+
+</div>
+
+{% endblock %}

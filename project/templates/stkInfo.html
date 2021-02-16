@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %} Stakeholder Registration {% endblock %}
+{% block pageheader %} Stakeholder Registration {% endblock %}
+{% block content %}
+     
+    <div style="background-color: #D9D9D9;border:2px solid #000; position:relative; margin-left:35%; margin-top:35px; width:30%;height:750px; display: flex; flex-direction:column; align-items: center;">
+ 
+      <form method="POST" action="{{ url_for('stkregistration') }}"> 
+
+    <div style="position:relative; margin-top:5% ;margin-left:5%">
+    <h2>Stakeholder Registration</h2> 
+
+    
+<form>
+    <div class="mb-3" style="margin-top: 25px;">
+        <h5>General Information</h5>
+        <label for="name" class="form-label">Stakeholder Name:</label>
+        {{i.name}}
+    </div>
+
+        <div class="mb-3">
+        Description: {{i.description}}</div>
+        <div class="mb-3 ">
+            Location: {{i.location}}
+        </div>
+
+
+      <div class="mb-3 ">
+        <h5>Characteristics</h5>
+        
+        Official Language Minorty Communities:
+        {{i.bsMinority}}
+      
+    <div class="mb-3">
+        
+        Living with mental health/additions:
+        {{i.bsMentalHealth}}
+        
+    <div class="mb-3">
+        
+        <label class="form-check-label" for="bsSeniors">
+        Seniors: {{i.Seniors}}
+        </label>
+
+    <div class="mb-3">
+        
+        <label class="form-check-label" for="bsLGBTQ">
+        LGBTQS+: {{i.bsLGBTQ}}
+        </label>
+    <div class="mb-3">
+        
+        
+        <label class="form-check-label" for="bsNewcomer">
+        Newcomers and Refugees: {{i.bsNewcomer}}
+        </label>
+    <div class="mb-3">
+        
+        <label class="form-check-label" for="bsRacialized">
+        Racialized(all): {{i.bsRacialized}}
+        </label>
+    <div class="mb-3">
+        
+        <label class="form-check-label" for="bsRemote">
+        Rural, Remote or Northern Community: {{i.bsRemote}}
+        </label>
+
+    <div class="mb-3">
+        
+        <label class="form-check-label" for="bsDisabilities">
+        People with disabilities: {{i.bsDisabilities}}
+        </label>
+        
+    <div class="mb-3">
+        
+        <label class="form-check-label" for="bsIndigenous">
+        Indigenous: {{i.bsIndigenous}}
+        </label>
+    <div class="mb-3">
+        
+        <label class="form-check-label" for="bsWomenGirls">
+        Women and Girls: {{i.bsWomenGirls}}
+        </label>
+    <div class="mb-3">
+        
+        <label class="form-check-label" for="bsChildrenYouth">
+        Children and Youth: {{i.bsChildrenYouth}}
+        </label>
+    <div class="mb-3">
+        
+        <label class="form-check-label" for="bsLowIncome">
+        Low Income:{{i.bsLowIncome}}
+        </label>
+        
+           
+
+
+      
+    </div>
+
+
+</form>
+
+</div>
+{% endblock %}
